@@ -1,0 +1,113 @@
+aid: geofabrik
+name: Geofabrik
+description: Geofabrik is a geographic data processing company specializing in OpenStreetMap data extraction, processing, and distribution. Their download REST API provides daily-updated OSM extracts in PBF, shapefile, and GeoPackage formats for every region of the world, alongside paid managed services for geocoding (Nominatim/Photon), routing (OSRM/GraphHopper), and the Overpass API for advanced OSM queries. All public downloads are free under the ODbL 1.0 license.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/geofabrik/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+type: Index
+tags:
+  - OpenStreetMap
+  - Geospatial
+  - GIS
+  - Maps
+  - Download
+  - OSM
+  - Routing
+  - Geocoding
+apis:
+  - aid: geofabrik:download-api
+    name: Geofabrik Download API
+    description: Free download service providing daily-updated OpenStreetMap data extracts by geographic region. Supports .osm.pbf, .osc.gz (daily diffs), .shp.zip (shapefiles), and .gpkg.zip (GeoPackage) formats. A machine-readable JSON index enables programmatic discovery of all available extracts and download URLs.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://download.geofabrik.de
+    baseURL: https://download.geofabrik.de
+    tags:
+      - OpenStreetMap
+      - Download
+      - GIS
+      - Geospatial
+    properties:
+      - type: Documentation
+        url: https://download.geofabrik.de/technical.html
+      - type: OpenAPI
+        url: https://download.geofabrik.de/index-v1.json
+
+  - aid: geofabrik:overpass-api
+    name: Geofabrik Overpass API
+    description: Managed Overpass API service providing a reliable, low-latency alternative to the public OpenStreetMap Overpass servers for running complex OSM data queries. Available in Small (10k req/mo), Medium (100k req/mo), Large (1M req/mo), and XXL (unlimited) tiers, billed annually.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.geofabrik.de/data/overpass-api.html
+    baseURL: https://overpass-api.de
+    tags:
+      - OpenStreetMap
+      - Overpass
+      - Query
+      - Geospatial
+    properties:
+      - type: Documentation
+        url: https://www.geofabrik.de/data/overpass-api.html
+      - type: Pricing
+        url: https://www.geofabrik.de/data/overpass-api.html
+
+  - aid: geofabrik:geocoding-api
+    name: Geofabrik Geocoding API
+    description: Managed geocoding service powered by Nominatim and Photon, converting addresses to coordinates and vice versa using OpenStreetMap data. Photon supports auto-completion and typo tolerance. Available in Small (100k req/mo), Medium (1M req/mo), Large (10M req/mo), and XXL (unlimited) plans.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.geofabrik.de/data/geocoding.html
+    baseURL: https://nominatim.geofabrik.de
+    tags:
+      - Geocoding
+      - Nominatim
+      - Photon
+      - OpenStreetMap
+    properties:
+      - type: Documentation
+        url: https://www.geofabrik.de/data/geocoding.html
+      - type: Pricing
+        url: https://www.geofabrik.de/data/geocoding.html
+
+  - aid: geofabrik:routing-api
+    name: Geofabrik Routing API
+    description: Managed routing service powered by OSRM and GraphHopper for route calculation, turn-by-turn instructions, distance matrix computation, isochrones, and map matching. OSRM supports car routing and matrix calculations; GraphHopper supports car, truck, and foot profiles with isochrone support.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.geofabrik.de/data/routing.html
+    baseURL: https://routing.geofabrik.de
+    tags:
+      - Routing
+      - OSRM
+      - GraphHopper
+      - OpenStreetMap
+      - Navigation
+    properties:
+      - type: Documentation
+        url: https://www.geofabrik.de/data/routing.html
+      - type: Pricing
+        url: https://www.geofabrik.de/data/routing.html
+
+common:
+  - type: Website
+    url: https://www.geofabrik.de
+  - type: Documentation
+    url: https://download.geofabrik.de/technical.html
+  - type: GitHubOrg
+    url: https://github.com/geofabrik
+  - type: Blog
+    url: https://blog.geofabrik.de
+  - type: Pricing
+    url: https://www.geofabrik.de/data/overpass-api.html
+  - type: X
+    url: https://twitter.com/geofabrik
+  - type: Mastodon
+    url: https://en.osm.town/@geofabrik
+  - type: Plans
+    url: plans/geofabrik-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/geofabrik-rate-limits.yml
+  - type: FinOps
+    url: finops/geofabrik-finops.yml
+
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

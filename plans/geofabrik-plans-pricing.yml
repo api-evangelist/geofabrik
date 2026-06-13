@@ -1,0 +1,93 @@
+name: Geofabrik Plans and Pricing
+description: Geofabrik offers a free public download tier with no authentication required, and paid managed API plans for Overpass, Geocoding, and Routing services. Paid plans are billed annually in advance, with monthly request quotas. All public OSM data extracts (download.geofabrik.de) are freely available under the ODbL 1.0 license.
+url: https://www.geofabrik.de/data/overpass-api.html
+plans:
+  - name: Public Download (Free)
+    description: Free access to all public OSM data extracts updated daily. No authentication or account required. Covers .osm.pbf, .osc.gz diff files, and .shp.zip shapefiles for all global regions.
+    url: https://download.geofabrik.de
+    price: Free
+    rateLimits:
+      - type: None documented; fair-use expected
+    features:
+      - Daily-updated OSM PBF extracts for all world regions
+      - Daily diff (.osc.gz) files for incremental updates
+      - Shapefiles (.shp.zip) for selected regions
+      - Machine-readable index via index-v1.json and index-v1-nogeom.json
+      - No login required
+
+  - name: Small (Managed APIs)
+    description: Entry-level paid plan for Overpass, Geocoding, and Routing managed services.
+    url: https://www.geofabrik.de/data/overpass-api.html
+    price: "€40/month (billed annually)"
+    rateLimits:
+      - type: Overpass API
+        requests: 10000
+        period: monthly
+      - type: Geocoding API
+        requests: 100000
+        period: monthly
+      - type: Routing API
+        requests: 100000
+        period: monthly
+    features:
+      - Dedicated managed service (Overpass / Nominatim / Photon / OSRM / GraphHopper)
+      - Monthly request quota
+      - Annual billing
+
+  - name: Medium (Managed APIs)
+    description: Mid-tier paid plan for Overpass, Geocoding, and Routing managed services.
+    url: https://www.geofabrik.de/data/overpass-api.html
+    price: "€80/month (billed annually)"
+    rateLimits:
+      - type: Overpass API
+        requests: 100000
+        period: monthly
+      - type: Geocoding API
+        requests: 1000000
+        period: monthly
+      - type: Routing API
+        requests: 1000000
+        period: monthly
+    features:
+      - Dedicated managed service
+      - Higher monthly request quota
+      - Annual billing
+
+  - name: Large (Managed APIs)
+    description: High-volume paid plan for Overpass, Geocoding, and Routing managed services.
+    url: https://www.geofabrik.de/data/overpass-api.html
+    price: "€160/month (billed annually)"
+    rateLimits:
+      - type: Overpass API
+        requests: 1000000
+        period: monthly
+      - type: Geocoding API
+        requests: 10000000
+        period: monthly
+      - type: Routing API
+        requests: 10000000
+        period: monthly
+    features:
+      - Dedicated managed service
+      - High-volume monthly quota
+      - Annual billing
+
+  - name: XXL / Unlimited (Managed APIs)
+    description: Unlimited or custom-server plan for enterprise-level usage. Starting at €450/month billed annually. Custom server installations available for highest-demand scenarios.
+    url: https://www.geofabrik.de/data/overpass-api.html
+    price: "From €450/month (billed annually)"
+    rateLimits:
+      - type: Overpass API
+        requests: Unlimited
+        period: monthly
+      - type: Geocoding API
+        requests: Unlimited
+        period: monthly
+      - type: Routing API
+        requests: Unlimited
+        period: monthly
+    features:
+      - Unlimited requests
+      - Option for dedicated custom server
+      - Annual billing
+      - Custom routing profile modifications available

@@ -1,0 +1,69 @@
+name: Geofabrik FinOps
+description: Geofabrik's public OSM download service is entirely free with no cost exposure. Paid managed API services (Overpass, Geocoding, Routing) are billed annually in advance at fixed monthly rates, eliminating per-request cost surprises. All fees are quoted excluding VAT. Annual pre-payment means no mid-year cost fluctuations, but requires upfront commitment.
+url: https://www.geofabrik.de/data/overpass-api.html
+currency: EUR
+billingModel: annual-prepay
+vatNotes: All prices listed exclude VAT.
+costOptimization:
+  - recommendation: Use the free public Download API for bulk OSM data needs before subscribing to managed APIs.
+    savings: Full cost avoidance for batch/offline GIS workflows
+  - recommendation: Choose the correct managed API tier based on projected monthly requests to avoid over-provisioning. Step up only when consistently hitting quota limits.
+    savings: Avoid paying for Large (€160/mo) when Medium (€80/mo) suffices
+  - recommendation: For Overpass queries, use the machine-readable index (index-v1.json) and pre-downloaded extracts via Osmium/Osmosis to reduce live API calls.
+    savings: Can eliminate Overpass subscription entirely for many use cases
+  - recommendation: Geocoding and Routing XXL tiers allow unlimited requests for €450+/mo; negotiate a dedicated server for very high volumes which may be more cost-effective than per-request cloud alternatives.
+    savings: Predictable flat cost vs. variable per-request pricing from commercial alternatives
+
+services:
+  - name: Download API
+    cost: Free
+    billingUnit: N/A
+    notes: No cost. No account required. ODbL 1.0 license applies to all data.
+
+  - name: Overpass API (Managed)
+    billingUnit: per-month (annual contract)
+    tiers:
+      - name: Small
+        monthlyRequests: 10000
+        monthlyPrice: 40
+      - name: Medium
+        monthlyRequests: 100000
+        monthlyPrice: 80
+      - name: Large
+        monthlyRequests: 1000000
+        monthlyPrice: 160
+      - name: XXL
+        monthlyRequests: Unlimited
+        monthlyPrice: 450
+
+  - name: Geocoding API (Nominatim / Photon)
+    billingUnit: per-month (annual contract)
+    tiers:
+      - name: Small
+        monthlyRequests: 100000
+        monthlyPrice: 40
+      - name: Medium
+        monthlyRequests: 1000000
+        monthlyPrice: 80
+      - name: Large
+        monthlyRequests: 10000000
+        monthlyPrice: 160
+      - name: XXL
+        monthlyRequests: Unlimited
+        monthlyPrice: 450
+
+  - name: Routing API (OSRM / GraphHopper)
+    billingUnit: per-month (annual contract)
+    tiers:
+      - name: Small
+        monthlyRequests: 100000
+        monthlyPrice: 40
+      - name: Medium
+        monthlyRequests: 1000000
+        monthlyPrice: 80
+      - name: Large
+        monthlyRequests: 10000000
+        monthlyPrice: 160
+      - name: XXL
+        monthlyRequests: Unlimited
+        monthlyPrice: 450

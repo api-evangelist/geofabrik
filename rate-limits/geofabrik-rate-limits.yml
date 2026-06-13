@@ -1,0 +1,59 @@
+name: Geofabrik Rate Limits
+description: Geofabrik's public download server has no documented hard rate limits but expects responsible, fair-use behavior. Their paid managed API services (Overpass, Geocoding, Routing) enforce monthly request quotas per plan tier. Excessive resource use on any tier may be subject to throttling per Geofabrik's service conditions.
+url: https://download.geofabrik.de/technical.html
+rateLimits:
+  - api: Download API (Public)
+    type: fair-use
+    description: No documented rate limit on the public download server. Geofabrik blog post "Download responsibly!" (September 2025) requests that consumers avoid abusive automated scraping or excessive concurrent downloads. Use of the machine-readable index (index-v1.json) is preferred over HTML scraping.
+    limits: []
+
+  - api: Overpass API (Managed)
+    type: monthly-quota
+    description: Monthly request quotas enforced per plan. Queries that excessively use server resources may be subject to additional restrictions beyond the stated quota.
+    limits:
+      - plan: Small
+        requests: 10000
+        period: monthly
+      - plan: Medium
+        requests: 100000
+        period: monthly
+      - plan: Large
+        requests: 1000000
+        period: monthly
+      - plan: XXL
+        requests: Unlimited
+        period: monthly
+
+  - api: Geocoding API (Nominatim / Photon, Managed)
+    type: monthly-quota
+    description: Monthly request quotas enforced per plan.
+    limits:
+      - plan: Small
+        requests: 100000
+        period: monthly
+      - plan: Medium
+        requests: 1000000
+        period: monthly
+      - plan: Large
+        requests: 10000000
+        period: monthly
+      - plan: XXL
+        requests: Unlimited
+        period: monthly
+
+  - api: Routing API (OSRM / GraphHopper, Managed)
+    type: monthly-quota
+    description: Monthly request quotas enforced per plan.
+    limits:
+      - plan: Small
+        requests: 100000
+        period: monthly
+      - plan: Medium
+        requests: 1000000
+        period: monthly
+      - plan: Large
+        requests: 10000000
+        period: monthly
+      - plan: XXL
+        requests: Unlimited
+        period: monthly
