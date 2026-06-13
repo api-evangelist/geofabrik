@@ -1,0 +1,359 @@
+openapi: 3.0.3
+info:
+  title: Geofabrik Download API
+  description: >
+    Free download service providing daily-updated OpenStreetMap (OSM) data
+    extracts by geographic region. A machine-readable JSON index lets clients
+    programmatically discover all available extracts and their download URLs.
+    Data are distributed under the ODbL 1.0 license.
+  version: "1"
+  contact:
+    name: Geofabrik GmbH
+    url: https://www.geofabrik.de/geofabrik/contact.html
+  license:
+    name: ODbL 1.0
+    url: https://opendatacommons.org/licenses/odbl/1-0/
+
+servers:
+  - url: https://download.geofabrik.de
+    description: Geofabrik public download server
+
+tags:
+  - name: Index
+    description: Machine-readable index of all available extracts
+  - name: Downloads
+    description: Direct download of OSM data extract files
+
+paths:
+  /index-v1.json:
+    get:
+      operationId: getIndexFull
+      summary: Get full extract index (with geometry)
+      description: >
+        Returns a GeoJSON FeatureCollection listing every available OSM
+        extract together with its boundary geometry and download URLs.
+        Use index-v1-nogeom.json for a smaller payload without geometries.
+      tags:
+        - Index
+      responses:
+        "200":
+          description: GeoJSON FeatureCollection of all available extracts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExtractIndex"
+              example:
+                type: FeatureCollection
+                features:
+                  - type: Feature
+                    properties:
+                      id: act
+                      parent: australia
+                      name: Australian Capital Territory
+                      urls:
+                        pbf: https://download.geofabrik.de/australia-oceania/australia/act-latest.osm.pbf
+                        shp: https://download.geofabrik.de/australia-oceania/australia/act-latest-free.shp.zip
+                        pbf-internal: https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-latest-internal.osm.pbf
+                        history: https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-internal.osh.pbf
+                        taginfo: https://taginfo.geofabrik.de/australia-oceania:australia:act
+                        updates: https://download.geofabrik.de/australia-oceania/australia/act-updates
+                    geometry:
+                      type: MultiPolygon
+                      coordinates: []
+
+  /index-v1-nogeom.json:
+    get:
+      operationId: getIndexNoGeom
+      summary: Get extract index (without geometry)
+      description: >
+        Returns the same data as /index-v1.json but omits the boundary
+        geometry from each feature, resulting in a significantly smaller
+        response suitable for lightweight programmatic use.
+      tags:
+        - Index
+      responses:
+        "200":
+          description: JSON list of all available extracts without boundary geometries
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExtractIndexNoGeom"
+
+  /{region}/{area}-latest.osm.pbf:
+    get:
+      operationId: downloadPbf
+      summary: Download latest OSM PBF extract
+      description: >
+        Downloads the latest daily-updated OSM extract for the specified
+        region/area in PBF (Protocol Buffer) binary format. The exact URL
+        for each area is available from the index endpoint (urls.pbf).
+      tags:
+        - Downloads
+      parameters:
+        - $ref: "#/components/parameters/region"
+        - $ref: "#/components/parameters/area"
+      responses:
+        "200":
+          description: PBF binary OSM data extract
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: Extract not found for the specified region/area
+
+  /{region}/{area}-latest-free.shp.zip:
+    get:
+      operationId: downloadShapefile
+      summary: Download latest shapefile extract
+      description: >
+        Downloads the latest daily-updated OSM extract for the specified
+        region/area as a ZIP archive containing Esri Shapefile layers.
+        The exact URL is available from the index endpoint (urls.shp).
+      tags:
+        - Downloads
+      parameters:
+        - $ref: "#/components/parameters/region"
+        - $ref: "#/components/parameters/area"
+      responses:
+        "200":
+          description: ZIP archive containing Esri Shapefile layers
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        "404":
+          description: Extract not found
+
+  /{region}/{area}-updates/state.txt:
+    get:
+      operationId: getUpdateState
+      summary: Get replication state for an extract
+      description: >
+        Returns a plain-text state file for the minutely/daily replication
+        feed of the specified extract. The state contains a sequence number
+        and timestamp used to synchronise incremental updates.
+      tags:
+        - Downloads
+      parameters:
+        - $ref: "#/components/parameters/region"
+        - $ref: "#/components/parameters/area"
+      responses:
+        "200":
+          description: Plain-text replication state file
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  #Mon Jan 01 00:00:00 UTC 2024
+                  sequenceNumber=12345
+                  timestamp=2024-01-01T00\:00\:00Z
+        "404":
+          description: Updates feed not available for this extract
+
+components:
+  parameters:
+    region:
+      name: region
+      in: path
+      required: true
+      description: >
+        Top-level geographic region, e.g. europe, north-america, asia,
+        australia-oceania, africa, south-america, central-america,
+        russia, antarctica.
+      schema:
+        type: string
+        example: europe
+    area:
+      name: area
+      in: path
+      required: true
+      description: >
+        Area name within the region, e.g. germany, france,
+        us/california. Sub-region paths use forward slashes.
+      schema:
+        type: string
+        example: germany
+
+  schemas:
+    ExtractUrls:
+      type: object
+      description: Download URLs available for an extract
+      properties:
+        pbf:
+          type: string
+          format: uri
+          description: Latest .osm.pbf (PBF binary) download URL
+        bz2:
+          type: string
+          format: uri
+          description: Latest .osm.bz2 (bzip2-compressed XML) download URL
+        shp:
+          type: string
+          format: uri
+          description: Latest shapefile (.shp.zip) download URL
+        updates:
+          type: string
+          format: uri
+          description: >
+            Base URL for replication diffs; append /state.txt to read
+            the current sequence number and timestamp.
+        pbf-internal:
+          type: string
+          format: uri
+          description: >
+            .osm.pbf with user/editor metadata; requires OSM login via
+            OAuth.
+        history:
+          type: string
+          format: uri
+          description: Full history .osh.pbf; requires OSM login via OAuth.
+        taginfo:
+          type: string
+          format: uri
+          description: Geofabrik taginfo instance link for this extract.
+
+    ExtractProperties:
+      type: object
+      required:
+        - id
+        - name
+        - urls
+      properties:
+        id:
+          type: string
+          description: >
+            Unique extract identifier using letters, digits, hyphens, and
+            forward slashes (e.g. "act", "us/california").
+          example: act
+        parent:
+          type: string
+          description: Identifier of the next larger excerpt that contains this one.
+          example: australia
+        name:
+          type: string
+          description: English long-form area name.
+          example: Australian Capital Territory
+        iso3166-1:alpha2:
+          type: array
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+          description: Two-letter ISO 3166-1 alpha-2 country codes covering this extract.
+          example: ["AU"]
+        iso3166-2:
+          type: array
+          items:
+            type: string
+            minLength: 5
+            maxLength: 6
+          description: >
+            ISO 3166-2 sub-national region codes covering this extract.
+          example: ["AU-ACT"]
+        urls:
+          $ref: "#/components/schemas/ExtractUrls"
+
+    ExtractFeature:
+      type: object
+      required:
+        - type
+        - properties
+        - geometry
+      properties:
+        type:
+          type: string
+          enum: [Feature]
+        properties:
+          $ref: "#/components/schemas/ExtractProperties"
+        geometry:
+          description: >
+            GeoJSON geometry (MultiPolygon or Polygon) representing the
+            boundary of the extract. May be null for the planet extract.
+          nullable: true
+          oneOf:
+            - $ref: "#/components/schemas/GeoJsonPolygon"
+            - $ref: "#/components/schemas/GeoJsonMultiPolygon"
+
+    ExtractIndex:
+      type: object
+      required:
+        - type
+        - features
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExtractFeature"
+          description: All available OSM extract regions (~555 areas).
+
+    ExtractIndexNoGeom:
+      type: object
+      required:
+        - type
+        - features
+      properties:
+        type:
+          type: string
+          enum: [FeatureCollection]
+        features:
+          type: array
+          items:
+            type: object
+            required:
+              - type
+              - properties
+            properties:
+              type:
+                type: string
+                enum: [Feature]
+              properties:
+                $ref: "#/components/schemas/ExtractProperties"
+
+    GeoJsonPolygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum: [Polygon]
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+
+    GeoJsonMultiPolygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum: [MultiPolygon]
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                minItems: 2
+                maxItems: 2

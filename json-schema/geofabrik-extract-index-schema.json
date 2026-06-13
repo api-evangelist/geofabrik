@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.github.io/geofabrik/json-schema/geofabrik-extract-index-schema.json",
+  "title": "Geofabrik Extract Index",
+  "description": "JSON Schema for the Geofabrik Download API index-v1.json GeoJSON FeatureCollection response.",
+  "type": "object",
+  "required": ["type", "features"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "const": "FeatureCollection",
+      "description": "GeoJSON object type — always 'FeatureCollection'."
+    },
+    "features": {
+      "type": "array",
+      "description": "Array of extract features, each describing a downloadable OSM region.",
+      "items": {
+        "$ref": "#/$defs/ExtractFeature"
+      }
+    }
+  },
+  "$defs": {
+    "ExtractFeature": {
+      "type": "object",
+      "required": ["type", "properties"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Feature"
+        },
+        "properties": {
+          "$ref": "#/$defs/ExtractProperties"
+        },
+        "geometry": {
+          "description": "GeoJSON boundary geometry for the extract area, or null for the planet.",
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/GeoJsonPolygon" },
+            { "$ref": "#/$defs/GeoJsonMultiPolygon" }
+          ]
+        }
+      }
+    },
+    "ExtractProperties": {
+      "type": "object",
+      "required": ["id", "name", "urls"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique extract identifier (letters, digits, hyphens, forward slashes).",
+          "examples": ["act", "europe", "us/california", "germany"]
+        },
+        "parent": {
+          "type": "string",
+          "description": "Identifier of the next larger excerpt that contains this one.",
+          "examples": ["australia", "north-america"]
+        },
+        "name": {
+          "type": "string",
+          "description": "English long-form area name.",
+          "examples": ["Australian Capital Territory", "Germany"]
+        },
+        "iso3166-1:alpha2": {
+          "type": "array",
+          "description": "ISO 3166-1 alpha-2 two-letter country codes covering this extract.",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2,
+            "pattern": "^[A-Z]{2}$"
+          },
+          "examples": [["AU"], ["DE"], ["US", "CA"]]
+        },
+        "iso3166-2": {
+          "type": "array",
+          "description": "ISO 3166-2 sub-national region codes covering this extract.",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}-[A-Z0-9]{1,3}$"
+          },
+          "examples": [["AU-ACT"], ["US-CA"]]
+        },
+        "urls": {
+          "$ref": "#/$defs/ExtractUrls"
+        }
+      }
+    },
+    "ExtractUrls": {
+      "type": "object",
+      "description": "Download URLs for the extract in various formats.",
+      "properties": {
+        "pbf": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct download URL for the latest .osm.pbf (PBF binary) extract."
+        },
+        "bz2": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct download URL for the latest .osm.bz2 (bzip2-compressed OSM XML) extract."
+        },
+        "shp": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct download URL for the latest shapefile ZIP archive."
+        },
+        "updates": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base URL for the replication/diff updates feed; append /state.txt for current sequence."
+        },
+        "pbf-internal": {
+          "type": "string",
+          "format": "uri",
+          "description": "OSM PBF with user/editor metadata; requires OpenStreetMap OAuth login."
+        },
+        "history": {
+          "type": "string",
+          "format": "uri",
+          "description": "Full history .osh.pbf file; requires OpenStreetMap OAuth login."
+        },
+        "taginfo": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to Geofabrik's taginfo instance for this extract region."
+        }
+      }
+    },
+    "GeoJsonPolygon": {
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": { "type": "string", "const": "Polygon" },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        }
+      }
+    },
+    "GeoJsonMultiPolygon": {
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": { "type": "string", "const": "MultiPolygon" },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": { "type": "number" },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

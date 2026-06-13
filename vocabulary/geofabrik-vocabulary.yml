@@ -1,0 +1,145 @@
+vocabulary:
+  provider: Geofabrik
+  description: >
+    Domain vocabulary for Geofabrik's OpenStreetMap data distribution and
+    managed geospatial API services.
+  terms:
+    - term: OSM
+      label: OpenStreetMap
+      definition: >
+        A collaborative, freely editable world map maintained by volunteers
+        and distributed under the Open Database License (ODbL 1.0).
+      relatedTerms: [ODbL, PBF, OSC, Overpass]
+
+    - term: PBF
+      label: Protocolbuffer Binary Format
+      definition: >
+        A compact binary encoding of OSM data using Protocol Buffers, faster
+        to parse than OSM XML and the preferred format for bulk data exchange.
+      relatedTerms: [OSM, OSC]
+
+    - term: OSC
+      label: OSM Change Format
+      definition: >
+        An XML-based incremental diff format (.osc.gz) representing changes
+        to the OSM database between two time points, used for replication feeds.
+      relatedTerms: [PBF, replication]
+
+    - term: OSH
+      label: OSM Full History Format
+      definition: >
+        An extension of OSM/PBF that includes the complete edit history of
+        every object. Access requires OpenStreetMap OAuth authentication.
+      relatedTerms: [PBF, OSM]
+
+    - term: Shapefile
+      label: Esri Shapefile
+      definition: >
+        A geospatial vector data format storing geometry and attributes in
+        a set of related files (.shp, .dbf, .shx). Geofabrik provides
+        pre-processed thematic layers derived from OSM data.
+      relatedTerms: [GeoPackage, OSM]
+
+    - term: GeoPackage
+      label: OGC GeoPackage
+      definition: >
+        An open, standards-based, platform-independent, portable, self-describing,
+        compact format for transferring geospatial information based on SQLite.
+      relatedTerms: [Shapefile, OSM]
+
+    - term: extract
+      label: OSM Extract
+      definition: >
+        A subset of the planet-wide OSM dataset clipped to a specific geographic
+        area (continent, country, state, or city). Geofabrik publishes ~555
+        extracts updated daily.
+      relatedTerms: [region, OSM]
+
+    - term: region
+      label: Geographic Region
+      definition: >
+        A top-level geographic grouping used to organise extracts, e.g.
+        europe, north-america, asia, australia-oceania, africa, south-america,
+        central-america, russia, antarctica.
+      relatedTerms: [extract]
+
+    - term: replication
+      label: Replication Feed
+      definition: >
+        A sequence of incremental OSM change files (minutely or daily diffs)
+        published to a numbered directory tree, allowing clients to keep a
+        local OSM copy in sync without re-downloading full extracts.
+      relatedTerms: [OSC, updates]
+
+    - term: Overpass
+      label: Overpass API
+      definition: >
+        A read-only OSM API that allows complex custom queries against the
+        OSM database using the Overpass Query Language (OQL). Geofabrik
+        offers managed Overpass instances as a paid service.
+      relatedTerms: [OSM]
+
+    - term: Nominatim
+      label: Nominatim Geocoder
+      definition: >
+        An open-source geocoding tool for searching OSM data by name or
+        address (forward geocoding) and for converting coordinates to
+        addresses (reverse geocoding). Geofabrik provides managed Nominatim
+        instances as a paid service.
+      relatedTerms: [geocoding, Photon]
+
+    - term: Photon
+      label: Photon Geocoder
+      definition: >
+        An open-source geocoder built on top of Elasticsearch and OSM data,
+        supporting auto-completion and typo tolerance. Offered by Geofabrik
+        as a managed paid service.
+      relatedTerms: [geocoding, Nominatim]
+
+    - term: OSRM
+      label: Open Source Routing Machine
+      definition: >
+        A high-performance routing engine for shortest path computation on
+        OSM road networks, supporting car profiles and matrix (many-to-many
+        distance) calculations. Offered by Geofabrik as a managed service.
+      relatedTerms: [routing, GraphHopper]
+
+    - term: GraphHopper
+      label: GraphHopper Routing Engine
+      definition: >
+        An open-source routing engine supporting multiple transport profiles
+        (car, truck, foot), turn restrictions, isochrone calculations, and
+        map matching. Offered by Geofabrik as a managed service.
+      relatedTerms: [routing, OSRM]
+
+    - term: ODbL
+      label: Open Database License 1.0
+      definition: >
+        The Open Data Commons Open Database License under which OSM data
+        (and all Geofabrik extracts derived from it) are distributed. Requires
+        attribution and share-alike for derivative databases.
+      relatedTerms: [OSM]
+
+    - term: taginfo
+      label: Taginfo
+      definition: >
+        A tool for exploring OSM tags (key-value pairs) used in a given
+        region, showing statistics on tag usage and their meanings.
+        Geofabrik hosts regional taginfo instances.
+      relatedTerms: [OSM, extract]
+
+    - term: GeoJSON
+      label: GeoJSON
+      definition: >
+        An open standard format for encoding geographic data structures using
+        JSON, based on the RFC 7946 specification. The Geofabrik index API
+        returns a GeoJSON FeatureCollection.
+      relatedTerms: [extract, geometry]
+
+    - term: isochrone
+      label: Isochrone
+      definition: >
+        A polygon representing the area reachable from a point within a given
+        travel time or distance, computed by routing engines such as
+        GraphHopper.
+      relatedTerms: [routing, GraphHopper]

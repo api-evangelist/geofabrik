@@ -1,0 +1,102 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "act",
+        "parent": "australia",
+        "name": "Australian Capital Territory",
+        "iso3166-2": ["AU-ACT"],
+        "urls": {
+          "pbf": "https://download.geofabrik.de/australia-oceania/australia/act-latest.osm.pbf",
+          "shp": "https://download.geofabrik.de/australia-oceania/australia/act-latest-free.shp.zip",
+          "pbf-internal": "https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-latest-internal.osm.pbf",
+          "history": "https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-internal.osh.pbf",
+          "taginfo": "https://taginfo.geofabrik.de/australia-oceania:australia:act",
+          "updates": "https://download.geofabrik.de/australia-oceania/australia/act-updates"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [148.7816, -35.40756],
+              [148.8025, -35.38177],
+              [149.209, -35.21153],
+              [149.2344, -35.221],
+              [149.4017, -35.10645],
+              [149.4017, -35.9169],
+              [148.7816, -35.40756]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "germany",
+        "parent": "europe",
+        "name": "Germany",
+        "iso3166-1:alpha2": ["DE"],
+        "urls": {
+          "pbf": "https://download.geofabrik.de/europe/germany-latest.osm.pbf",
+          "bz2": "https://download.geofabrik.de/europe/germany-latest.osm.bz2",
+          "shp": "https://download.geofabrik.de/europe/germany-latest-free.shp.zip",
+          "pbf-internal": "https://osm-internal.download.geofabrik.de/europe/germany-latest-internal.osm.pbf",
+          "history": "https://osm-internal.download.geofabrik.de/europe/germany-internal.osh.pbf",
+          "taginfo": "https://taginfo.geofabrik.de/europe:germany",
+          "updates": "https://download.geofabrik.de/europe/germany-updates"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [5.8663, 47.2703],
+              [15.0419, 47.2703],
+              [15.0419, 55.0582],
+              [5.8663, 55.0582],
+              [5.8663, 47.2703]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "us/california",
+        "parent": "us",
+        "name": "California",
+        "iso3166-1:alpha2": ["US"],
+        "iso3166-2": ["US-CA"],
+        "urls": {
+          "pbf": "https://download.geofabrik.de/north-america/us/california-latest.osm.pbf",
+          "shp": "https://download.geofabrik.de/north-america/us/california-latest-free.shp.zip",
+          "pbf-internal": "https://osm-internal.download.geofabrik.de/north-america/us/california-latest-internal.osm.pbf",
+          "history": "https://osm-internal.download.geofabrik.de/north-america/us/california-internal.osh.pbf",
+          "taginfo": "https://taginfo.geofabrik.de/north-america:us:california",
+          "updates": "https://download.geofabrik.de/north-america/us/california-updates"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [-124.409591, 32.534156],
+              [-114.131211, 32.534156],
+              [-114.131211, 42.009518],
+              [-124.409591, 42.009518],
+              [-124.409591, 32.534156]
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

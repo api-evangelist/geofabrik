@@ -1,0 +1,134 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "geofabrik": "https://www.geofabrik.de/vocab#",
+    "osm": "https://www.openstreetmap.org/vocab#",
+    "geojson": "https://purl.org/geojson/vocab#",
+
+    "id": "@id",
+    "type": "@type",
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+
+    "ExtractIndex": "geofabrik:ExtractIndex",
+    "ExtractFeature": "geofabrik:ExtractFeature",
+    "ExtractProperties": "geofabrik:ExtractProperties",
+    "ExtractUrls": "geofabrik:ExtractUrls",
+
+    "FeatureCollection": "geojson:FeatureCollection",
+    "Feature": "geojson:Feature",
+    "features": "geojson:features",
+    "geometry": "geojson:geometry",
+    "properties": "geojson:properties",
+    "coordinates": "geojson:coordinates",
+    "Polygon": "geojson:Polygon",
+    "MultiPolygon": "geojson:MultiPolygon",
+
+    "extract": {
+      "@id": "geofabrik:extract",
+      "@type": "@id"
+    },
+    "parent": {
+      "@id": "geofabrik:parent",
+      "@type": "@id"
+    },
+    "region": "geofabrik:region",
+    "urls": "geofabrik:urls",
+    "pbf": {
+      "@id": "geofabrik:pbfUrl",
+      "@type": "@id"
+    },
+    "bz2": {
+      "@id": "geofabrik:bz2Url",
+      "@type": "@id"
+    },
+    "shp": {
+      "@id": "geofabrik:shapefileUrl",
+      "@type": "@id"
+    },
+    "updates": {
+      "@id": "geofabrik:updatesUrl",
+      "@type": "@id"
+    },
+    "pbf-internal": {
+      "@id": "geofabrik:pbfInternalUrl",
+      "@type": "@id"
+    },
+    "history": {
+      "@id": "geofabrik:historyUrl",
+      "@type": "@id"
+    },
+    "taginfo": {
+      "@id": "geofabrik:taginfoUrl",
+      "@type": "@id"
+    },
+
+    "iso3166-1:alpha2": {
+      "@id": "schema:addressCountry",
+      "@container": "@set"
+    },
+    "iso3166-2": {
+      "@id": "schema:addressRegion",
+      "@container": "@set"
+    },
+
+    "OSMData": "osm:Data",
+    "PBFFormat": "geofabrik:PBFFormat",
+    "ShapefileFormat": "geofabrik:ShapefileFormat",
+    "GeoPackageFormat": "geofabrik:GeoPackageFormat",
+    "ReplicationFeed": "geofabrik:ReplicationFeed",
+
+    "DownloadAPI": "geofabrik:DownloadAPI",
+    "OverpassAPI": "geofabrik:OverpassAPI",
+    "GeocodingAPI": "geofabrik:GeocodingAPI",
+    "RoutingAPI": "geofabrik:RoutingAPI",
+
+    "license": "schema:license",
+    "provider": "schema:provider",
+    "dateModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:date"
+    }
+  },
+  "@graph": [
+    {
+      "@id": "https://download.geofabrik.de",
+      "@type": "geofabrik:DownloadAPI",
+      "name": "Geofabrik Download API",
+      "description": "Free daily-updated OpenStreetMap data extracts by geographic region.",
+      "url": "https://download.geofabrik.de",
+      "license": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "provider": {
+        "@id": "https://www.geofabrik.de",
+        "@type": "schema:Organization",
+        "name": "Geofabrik GmbH",
+        "url": "https://www.geofabrik.de"
+      }
+    },
+    {
+      "@id": "https://overpass-api.de",
+      "@type": "geofabrik:OverpassAPI",
+      "name": "Geofabrik Overpass API",
+      "description": "Managed Overpass API service for complex OpenStreetMap queries.",
+      "url": "https://www.geofabrik.de/data/overpass-api.html"
+    },
+    {
+      "@id": "https://nominatim.geofabrik.de",
+      "@type": "geofabrik:GeocodingAPI",
+      "name": "Geofabrik Geocoding API",
+      "description": "Managed Nominatim and Photon geocoding services powered by OSM data.",
+      "url": "https://www.geofabrik.de/data/geocoding.html"
+    },
+    {
+      "@id": "https://routing.geofabrik.de",
+      "@type": "geofabrik:RoutingAPI",
+      "name": "Geofabrik Routing API",
+      "description": "Managed routing service powered by OSRM and GraphHopper.",
+      "url": "https://www.geofabrik.de/data/routing.html"
+    }
+  ]
+}
