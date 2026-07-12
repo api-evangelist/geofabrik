@@ -87,6 +87,8 @@ apis:
         url: https://www.geofabrik.de/data/routing.html
 
 common:
+  - type: DomainSecurity
+    url: security/geofabrik-domain-security.yml
   - type: Website
     url: https://www.geofabrik.de
   - type: Documentation
