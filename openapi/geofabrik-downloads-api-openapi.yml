@@ -1,0 +1,114 @@
+openapi: 3.0.3
+info:
+  title: Geofabrik Download Downloads API
+  description: 'Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.
+
+    '
+  version: '1'
+  contact:
+    name: Geofabrik GmbH
+    url: https://www.geofabrik.de/geofabrik/contact.html
+  license:
+    name: ODbL 1.0
+    url: https://opendatacommons.org/licenses/odbl/1-0/
+servers:
+- url: https://download.geofabrik.de
+  description: Geofabrik public download server
+tags:
+- name: Downloads
+  description: Direct download of OSM data extract files
+paths:
+  /{region}/{area}-latest.osm.pbf:
+    get:
+      operationId: downloadPbf
+      summary: Download latest OSM PBF extract
+      description: 'Downloads the latest daily-updated OSM extract for the specified region/area in PBF (Protocol Buffer) binary format. The exact URL for each area is available from the index endpoint (urls.pbf).
+
+        '
+      tags:
+      - Downloads
+      parameters:
+      - $ref: '#/components/parameters/region'
+      - $ref: '#/components/parameters/area'
+      responses:
+        '200':
+          description: PBF binary OSM data extract
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Extract not found for the specified region/area
+  /{region}/{area}-latest-free.shp.zip:
+    get:
+      operationId: downloadShapefile
+      summary: Download latest shapefile extract
+      description: 'Downloads the latest daily-updated OSM extract for the specified region/area as a ZIP archive containing Esri Shapefile layers. The exact URL is available from the index endpoint (urls.shp).
+
+        '
+      tags:
+      - Downloads
+      parameters:
+      - $ref: '#/components/parameters/region'
+      - $ref: '#/components/parameters/area'
+      responses:
+        '200':
+          description: ZIP archive containing Esri Shapefile layers
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Extract not found
+  /{region}/{area}-updates/state.txt:
+    get:
+      operationId: getUpdateState
+      summary: Get replication state for an extract
+      description: 'Returns a plain-text state file for the minutely/daily replication feed of the specified extract. The state contains a sequence number and timestamp used to synchronise incremental updates.
+
+        '
+      tags:
+      - Downloads
+      parameters:
+      - $ref: '#/components/parameters/region'
+      - $ref: '#/components/parameters/area'
+      responses:
+        '200':
+          description: Plain-text replication state file
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: '#Mon Jan 01 00:00:00 UTC 2024
+
+                  sequenceNumber=12345
+
+                  timestamp=2024-01-01T00\:00\:00Z
+
+                  '
+        '404':
+          description: Updates feed not available for this extract
+components:
+  parameters:
+    area:
+      name: area
+      in: path
+      required: true
+      description: 'Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.
+
+        '
+      schema:
+        type: string
+        example: germany
+    region:
+      name: region
+      in: path
+      required: true
+      description: 'Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.
+
+        '
+      schema:
+        type: string
+        example: europe
