@@ -1,0 +1,16 @@
+{
+  "provider": "geofabrik",
+  "sources": [
+    "geofabrik-downloads-api-openapi.yml",
+    "geofabrik-index-api-openapi.yml"
+  ],
+  "outputs": [
+    "geofabrik-downloads-api-openapi.yml",
+    "geofabrik-index-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
