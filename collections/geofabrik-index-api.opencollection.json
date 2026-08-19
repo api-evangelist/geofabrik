@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Geofabrik Download Downloads Index API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get full extract index (with geometry)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://download.geofabrik.de/index-v1.json"
+          },
+          "docs": "Returns a GeoJSON FeatureCollection listing every available OSM extract together with its boundary geometry and download URLs. Use index-v1-nogeom.json for a smaller payload without geometries.\n"
+        },
+        {
+          "info": {
+            "name": "Get extract index (without geometry)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://download.geofabrik.de/index-v1-nogeom.json"
+          },
+          "docs": "Returns the same data as /index-v1.json but omits the boundary geometry from each feature, resulting in a significantly smaller response suitable for lightweight programmatic use.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

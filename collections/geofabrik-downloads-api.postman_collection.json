@@ -1,0 +1,423 @@
+{
+  "item": [
+    {
+      "id": "52592b98-9d93-4a60-b797-4890b98cd850",
+      "name": "Downloads",
+      "description": {
+        "content": "Direct download of OSM data extract files",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b96a7b58-82bc-438d-a22b-173bf7d1389b",
+          "name": "Download latest OSM PBF extract",
+          "request": {
+            "name": "Download latest OSM PBF extract",
+            "description": {
+              "content": "Downloads the latest daily-updated OSM extract for the specified region/area in PBF (Protocol Buffer) binary format. The exact URL for each area is available from the index endpoint (urls.pbf).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":region",
+                "{{area}}-latest.osm.pbf"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "region",
+                  "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f581180-9c83-47f9-93ff-5d2fcefbec92",
+              "name": "PBF binary OSM data extract",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-latest.osm.pbf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b8745ad-ef89-4902-9c10-032f4686cbbe",
+              "name": "Extract not found for the specified region/area",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-latest.osm.pbf"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d8d925c-34d8-45d7-9529-f1dc07ef011c",
+          "name": "Download latest shapefile extract",
+          "request": {
+            "name": "Download latest shapefile extract",
+            "description": {
+              "content": "Downloads the latest daily-updated OSM extract for the specified region/area as a ZIP archive containing Esri Shapefile layers. The exact URL is available from the index endpoint (urls.shp).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":region",
+                "{{area}}-latest-free.shp.zip"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "region",
+                  "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/zip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a430b93c-ac21-4404-ba94-5bcd98b066bd",
+              "name": "ZIP archive containing Esri Shapefile layers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-latest-free.shp.zip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/zip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/zip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a64db278-3026-4a25-81f4-9253cca6d263",
+              "name": "Extract not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-latest-free.shp.zip"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04da32b3-6ca9-4ea7-86db-436a43764871",
+          "name": "Get replication state for an extract",
+          "request": {
+            "name": "Get replication state for an extract",
+            "description": {
+              "content": "Returns a plain-text state file for the minutely/daily replication feed of the specified extract. The state contains a sequence number and timestamp used to synchronise incremental updates.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":region",
+                "{{area}}-updates",
+                "state.txt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "region",
+                  "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2b593fbc-7806-4880-a8ee-f89131526304",
+              "name": "Plain-text replication state file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-updates",
+                    "state.txt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "#Mon Jan 01 00:00:00 UTC 2024\nsequenceNumber=12345\ntimestamp=2024-01-01T00\\:00\\:00Z\n",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84801f7e-ce84-4ca9-ae54-7a4a243ee629",
+              "name": "Updates feed not available for this extract",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":region",
+                    "{{area}}-updates",
+                    "state.txt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://download.geofabrik.de",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.\n",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "area"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a4e496c-8798-4e63-bb1d-06d3be20130b",
+    "name": "Geofabrik Download Downloads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.\n\n\nContact Support:\n Name: Geofabrik GmbH",
+      "type": "text/plain"
+    }
+  }
+}

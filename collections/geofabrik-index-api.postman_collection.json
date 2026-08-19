@@ -1,0 +1,172 @@
+{
+  "item": [
+    {
+      "id": "439c520b-8fc5-4523-b974-26e9bded00f3",
+      "name": "Index",
+      "description": {
+        "content": "Machine-readable index of all available extracts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "037fbe78-62dc-42cf-a205-ab90d232d6b4",
+          "name": "Get full extract index (with geometry)",
+          "request": {
+            "name": "Get full extract index (with geometry)",
+            "description": {
+              "content": "Returns a GeoJSON FeatureCollection listing every available OSM extract together with its boundary geometry and download URLs. Use index-v1-nogeom.json for a smaller payload without geometries.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "index-v1.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0022feac-9e29-40a9-b998-0d5028f9eaff",
+              "name": "GeoJSON FeatureCollection of all available extracts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index-v1.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"id\": \"act\",\n        \"parent\": \"australia\",\n        \"name\": \"Australian Capital Territory\",\n        \"urls\": {\n          \"pbf\": \"https://download.geofabrik.de/australia-oceania/australia/act-latest.osm.pbf\",\n          \"shp\": \"https://download.geofabrik.de/australia-oceania/australia/act-latest-free.shp.zip\",\n          \"pbf-internal\": \"https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-latest-internal.osm.pbf\",\n          \"history\": \"https://osm-internal.download.geofabrik.de/australia-oceania/australia/act-internal.osh.pbf\",\n          \"taginfo\": \"https://taginfo.geofabrik.de/australia-oceania:australia:act\",\n          \"updates\": \"https://download.geofabrik.de/australia-oceania/australia/act-updates\"\n        }\n      },\n      \"geometry\": {\n        \"type\": \"MultiPolygon\",\n        \"coordinates\": []\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42e8667a-8039-44c5-aa38-78d3f115579d",
+          "name": "Get extract index (without geometry)",
+          "request": {
+            "name": "Get extract index (without geometry)",
+            "description": {
+              "content": "Returns the same data as /index-v1.json but omits the boundary geometry from each feature, resulting in a significantly smaller response suitable for lightweight programmatic use.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "index-v1-nogeom.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dfbf9d64-7e28-4519-a178-21c3eb38e707",
+              "name": "JSON list of all available extracts without boundary geometries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "index-v1-nogeom.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"id\": \"act\",\n        \"name\": \"Australian Capital Territory\",\n        \"urls\": {\n          \"pbf\": \"https://EVzupBVVUXevqPgdcfgAh.jiiWPMFNeRmMDA1ZktAVhmYwwtHuTodus3Os9,.1f7yp\",\n          \"bz2\": \"http://SdoNPHKJwYHQWalDrSzJGbNKnu.vwhFxFkAp\",\n          \"shp\": \"http://SHd.izipVI6J39fcUWJyqZvzOpgQMY9PGbyq9kcwgY55XdOJ99xzBuv0s,kYiMP-\",\n          \"updates\": \"https://N.mrbM,45nsTOVZOR20ok3e0b.zWnt\",\n          \"pbf-internal\": \"http://DucULUqeOCZXUHngBlS.ragjE.fLnrzrNjDvh,lm\",\n          \"history\": \"http://DQxNKPCQUIH.fvcnTjAz1dZAUDl,Z9GgRupEs-BiYoa.xSLkmc\",\n          \"taginfo\": \"http://Pc.vvlctot4kbQvs5ME3p54NjGAWJJZmB5P\"\n        },\n        \"parent\": \"australia\",\n        \"iso3166-1:alpha2\": [\n          \"AU\"\n        ],\n        \"iso3166-2\": [\n          \"AU-ACT\"\n        ]\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"properties\": {\n        \"id\": \"act\",\n        \"name\": \"Australian Capital Territory\",\n        \"urls\": {\n          \"pbf\": \"https://TVjAiMkSTPAIHYBqcdVgLpquOyuSfjSPS.tmkmsmWsdztjocxo0pMp1UIvGHKPbiCEzQrW,nQU1p,5eYMGQvCwi0JOOE-9ZkgDgs\",\n          \"bz2\": \"http://rYlBOhEKbPsZRTrVuqGtzZpnZYJOzxTQl.thdM54H4cpvl\",\n          \"shp\": \"http://lQIiQMfUMCjFhdUe.nkiaMtUHGumsb5\",\n          \"updates\": \"http://aTdJVULj.qkqPtasrrGcTLmwbUFY6Z4f86CQFCYBLMSKd8BS7ubM2sgnayF.O\",\n          \"pbf-internal\": \"http://jSHgJZuybZPKkcbXutlMObgcHNVNITMoH.pubqM6uri+P2pN\",\n          \"history\": \"https://oAKyoLqtfnw.mtBmPOzx\",\n          \"taginfo\": \"http://xAloptcPordy.tyymnxHrdj8VY1pXzOZnzZEtY6hxwJAUB8GJndq2sipAkFwTsO,JhgY10UAUoZEt+\"\n        },\n        \"parent\": \"australia\",\n        \"iso3166-1:alpha2\": [\n          \"AU\"\n        ],\n        \"iso3166-2\": [\n          \"AU-ACT\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://download.geofabrik.de",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e1d09026-11a4-4142-ab6e-6e82f8d10ddb",
+    "name": "Geofabrik Download Downloads Index API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.\n\n\nContact Support:\n Name: Geofabrik GmbH",
+      "type": "text/plain"
+    }
+  }
+}

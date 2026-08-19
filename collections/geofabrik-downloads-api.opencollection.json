@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Geofabrik Download Downloads API",
+    "version": "1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download latest OSM PBF extract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://download.geofabrik.de/:region/:area-latest.osm.pbf",
+            "params": [
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "path",
+                "description": "Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.\n"
+              }
+            ]
+          },
+          "docs": "Downloads the latest daily-updated OSM extract for the specified region/area in PBF (Protocol Buffer) binary format. The exact URL for each area is available from the index endpoint (urls.pbf).\n"
+        },
+        {
+          "info": {
+            "name": "Download latest shapefile extract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://download.geofabrik.de/:region/:area-latest-free.shp.zip",
+            "params": [
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "path",
+                "description": "Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.\n"
+              }
+            ]
+          },
+          "docs": "Downloads the latest daily-updated OSM extract for the specified region/area as a ZIP archive containing Esri Shapefile layers. The exact URL is available from the index endpoint (urls.shp).\n"
+        },
+        {
+          "info": {
+            "name": "Get replication state for an extract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://download.geofabrik.de/:region/:area-updates/state.txt",
+            "params": [
+              {
+                "name": "region",
+                "value": "",
+                "type": "path",
+                "description": "Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.\n"
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "path",
+                "description": "Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.\n"
+              }
+            ]
+          },
+          "docs": "Returns a plain-text state file for the minutely/daily replication feed of the specified extract. The state contains a sequence number and timestamp used to synchronise incremental updates.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
