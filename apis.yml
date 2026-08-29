@@ -1,6 +1,18 @@
 aid: geofabrik
 name: Geofabrik
 description: Geofabrik is a geographic data processing company specializing in OpenStreetMap data extraction, processing, and distribution. Their download REST API provides daily-updated OSM extracts in PBF, shapefile, and GeoPackage formats for every region of the world, alongside paid managed services for geocoding (Nominatim/Photon), routing (OSRM/GraphHopper), and the Overpass API for advanced OSM queries. All public downloads are free under the ODbL 1.0 license.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: open
