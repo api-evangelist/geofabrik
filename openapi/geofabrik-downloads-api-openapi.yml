@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Geofabrik Download Downloads API
-  description: 'Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.
-
-    '
+  description: Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.
   version: '1'
   contact:
     name: Geofabrik GmbH
@@ -22,9 +20,7 @@ paths:
     get:
       operationId: downloadPbf
       summary: Download latest OSM PBF extract
-      description: 'Downloads the latest daily-updated OSM extract for the specified region/area in PBF (Protocol Buffer) binary format. The exact URL for each area is available from the index endpoint (urls.pbf).
-
-        '
+      description: Downloads the latest daily-updated OSM extract for the specified region/area in PBF (Protocol Buffer) binary format. The exact URL for each area is available from the index endpoint (urls.pbf).
       tags:
       - Downloads
       parameters:
@@ -44,9 +40,7 @@ paths:
     get:
       operationId: downloadShapefile
       summary: Download latest shapefile extract
-      description: 'Downloads the latest daily-updated OSM extract for the specified region/area as a ZIP archive containing Esri Shapefile layers. The exact URL is available from the index endpoint (urls.shp).
-
-        '
+      description: Downloads the latest daily-updated OSM extract for the specified region/area as a ZIP archive containing Esri Shapefile layers. The exact URL is available from the index endpoint (urls.shp).
       tags:
       - Downloads
       parameters:
@@ -66,9 +60,7 @@ paths:
     get:
       operationId: getUpdateState
       summary: Get replication state for an extract
-      description: 'Returns a plain-text state file for the minutely/daily replication feed of the specified extract. The state contains a sequence number and timestamp used to synchronise incremental updates.
-
-        '
+      description: Returns a plain-text state file for the minutely/daily replication feed of the specified extract. The state contains a sequence number and timestamp used to synchronise incremental updates.
       tags:
       - Downloads
       parameters:

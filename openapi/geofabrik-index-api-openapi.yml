@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Geofabrik Download Downloads Index API
-  description: 'Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.
-
-    '
+  title: Geofabrik Download Index API
+  description: Free download service providing daily-updated OpenStreetMap (OSM) data extracts by geographic region. A machine-readable JSON index lets clients programmatically discover all available extracts and their download URLs. Data are distributed under the ODbL 1.0 license.
   version: '1'
   contact:
     name: Geofabrik GmbH
@@ -22,9 +20,7 @@ paths:
     get:
       operationId: getIndexFull
       summary: Get full extract index (with geometry)
-      description: 'Returns a GeoJSON FeatureCollection listing every available OSM extract together with its boundary geometry and download URLs. Use index-v1-nogeom.json for a smaller payload without geometries.
-
-        '
+      description: Returns a GeoJSON FeatureCollection listing every available OSM extract together with its boundary geometry and download URLs. Use index-v1-nogeom.json for a smaller payload without geometries.
       tags:
       - Index
       responses:
@@ -56,9 +52,7 @@ paths:
     get:
       operationId: getIndexNoGeom
       summary: Get extract index (without geometry)
-      description: 'Returns the same data as /index-v1.json but omits the boundary geometry from each feature, resulting in a significantly smaller response suitable for lightweight programmatic use.
-
-        '
+      description: Returns the same data as /index-v1.json but omits the boundary geometry from each feature, resulting in a significantly smaller response suitable for lightweight programmatic use.
       tags:
       - Index
       responses:
@@ -70,6 +64,123 @@ paths:
                 $ref: '#/components/schemas/ExtractIndexNoGeom'
 components:
   schemas:
+    GeoJsonPolygon:
+      type: object
+      required:
+      - type
+      - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+          - Polygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+    ExtractUrls:
+      type: object
+      description: Download URLs available for an extract
+      properties:
+        pbf:
+          type: string
+          format: uri
+          description: Latest .osm.pbf (PBF binary) download URL
+        bz2:
+          type: string
+          format: uri
+          description: Latest .osm.bz2 (bzip2-compressed XML) download URL
+        shp:
+          type: string
+          format: uri
+          description: Latest shapefile (.shp.zip) download URL
+        updates:
+          type: string
+          format: uri
+          description: 'Base URL for replication diffs; append /state.txt to read the current sequence number and timestamp.
+
+            '
+        pbf-internal:
+          type: string
+          format: uri
+          description: '.osm.pbf with user/editor metadata; requires OSM login via OAuth.
+
+            '
+        history:
+          type: string
+          format: uri
+          description: Full history .osh.pbf; requires OSM login via OAuth.
+        taginfo:
+          type: string
+          format: uri
+          description: Geofabrik taginfo instance link for this extract.
+    ExtractIndexNoGeom:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - properties
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              properties:
+                $ref: '#/components/schemas/ExtractProperties'
+    ExtractIndex:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractFeature'
+          description: All available OSM extract regions (~555 areas).
+    GeoJsonMultiPolygon:
+      type: object
+      required:
+      - type
+      - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+          - MultiPolygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                minItems: 2
+                maxItems: 2
     ExtractProperties:
       type: object
       required:
@@ -113,123 +224,6 @@ components:
           - AU-ACT
         urls:
           $ref: '#/components/schemas/ExtractUrls'
-    ExtractUrls:
-      type: object
-      description: Download URLs available for an extract
-      properties:
-        pbf:
-          type: string
-          format: uri
-          description: Latest .osm.pbf (PBF binary) download URL
-        bz2:
-          type: string
-          format: uri
-          description: Latest .osm.bz2 (bzip2-compressed XML) download URL
-        shp:
-          type: string
-          format: uri
-          description: Latest shapefile (.shp.zip) download URL
-        updates:
-          type: string
-          format: uri
-          description: 'Base URL for replication diffs; append /state.txt to read the current sequence number and timestamp.
-
-            '
-        pbf-internal:
-          type: string
-          format: uri
-          description: '.osm.pbf with user/editor metadata; requires OSM login via OAuth.
-
-            '
-        history:
-          type: string
-          format: uri
-          description: Full history .osh.pbf; requires OSM login via OAuth.
-        taginfo:
-          type: string
-          format: uri
-          description: Geofabrik taginfo instance link for this extract.
-    GeoJsonPolygon:
-      type: object
-      required:
-      - type
-      - coordinates
-      properties:
-        type:
-          type: string
-          enum:
-          - Polygon
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-              minItems: 2
-              maxItems: 2
-    ExtractIndex:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractFeature'
-          description: All available OSM extract regions (~555 areas).
-    ExtractIndexNoGeom:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - properties
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              properties:
-                $ref: '#/components/schemas/ExtractProperties'
-    GeoJsonMultiPolygon:
-      type: object
-      required:
-      - type
-      - coordinates
-      properties:
-        type:
-          type: string
-          enum:
-          - MultiPolygon
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-                minItems: 2
-                maxItems: 2
     ExtractFeature:
       type: object
       required:
@@ -247,7 +241,6 @@ components:
           description: 'GeoJSON geometry (MultiPolygon or Polygon) representing the boundary of the extract. May be null for the planet extract.
 
             '
-          nullable: true
           oneOf:
           - $ref: '#/components/schemas/GeoJsonPolygon'
           - $ref: '#/components/schemas/GeoJsonMultiPolygon'
