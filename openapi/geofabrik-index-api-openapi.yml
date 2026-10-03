@@ -64,6 +64,128 @@ paths:
                 $ref: '#/components/schemas/ExtractIndexNoGeom'
 components:
   schemas:
+    ExtractIndex:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtractFeature'
+          description: All available OSM extract regions (~555 areas).
+    GeoJsonPolygon:
+      type: object
+      required:
+      - type
+      - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+          - Polygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+    ExtractIndexNoGeom:
+      type: object
+      required:
+      - type
+      - features
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            required:
+            - type
+            - properties
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              properties:
+                $ref: '#/components/schemas/ExtractProperties'
+    ExtractProperties:
+      type: object
+      required:
+      - id
+      - name
+      - urls
+      properties:
+        id:
+          type: string
+          description: 'Unique extract identifier using letters, digits, hyphens, and forward slashes (e.g. "act", "us/california").
+
+            '
+          example: act
+        parent:
+          type: string
+          description: Identifier of the next larger excerpt that contains this one.
+          example: australia
+        name:
+          type: string
+          description: English long-form area name.
+          example: Australian Capital Territory
+        iso3166-1:alpha2:
+          type: array
+          items:
+            type: string
+            minLength: 2
+            maxLength: 2
+          description: Two-letter ISO 3166-1 alpha-2 country codes covering this extract.
+          example:
+          - AU
+        iso3166-2:
+          type: array
+          items:
+            type: string
+            minLength: 5
+            maxLength: 6
+          description: 'ISO 3166-2 sub-national region codes covering this extract.
+
+            '
+          example:
+          - AU-ACT
+        urls:
+          $ref: '#/components/schemas/ExtractUrls'
+    ExtractFeature:
+      type: object
+      required:
+      - type
+      - properties
+      - geometry
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        properties:
+          $ref: '#/components/schemas/ExtractProperties'
+        geometry:
+          description: 'GeoJSON geometry (MultiPolygon or Polygon) representing the boundary of the extract. May be null for the planet extract.
+
+            '
+          oneOf:
+          - $ref: '#/components/schemas/GeoJsonPolygon'
+          - $ref: '#/components/schemas/GeoJsonMultiPolygon'
     GeoJsonMultiPolygon:
       type: object
       required:
@@ -122,125 +244,3 @@ components:
           type: string
           format: uri
           description: Geofabrik taginfo instance link for this extract.
-    ExtractProperties:
-      type: object
-      required:
-      - id
-      - name
-      - urls
-      properties:
-        id:
-          type: string
-          description: 'Unique extract identifier using letters, digits, hyphens, and forward slashes (e.g. "act", "us/california").
-
-            '
-          example: act
-        parent:
-          type: string
-          description: Identifier of the next larger excerpt that contains this one.
-          example: australia
-        name:
-          type: string
-          description: English long-form area name.
-          example: Australian Capital Territory
-        iso3166-1:alpha2:
-          type: array
-          items:
-            type: string
-            minLength: 2
-            maxLength: 2
-          description: Two-letter ISO 3166-1 alpha-2 country codes covering this extract.
-          example:
-          - AU
-        iso3166-2:
-          type: array
-          items:
-            type: string
-            minLength: 5
-            maxLength: 6
-          description: 'ISO 3166-2 sub-national region codes covering this extract.
-
-            '
-          example:
-          - AU-ACT
-        urls:
-          $ref: '#/components/schemas/ExtractUrls'
-    ExtractIndex:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractFeature'
-          description: All available OSM extract regions (~555 areas).
-    GeoJsonPolygon:
-      type: object
-      required:
-      - type
-      - coordinates
-      properties:
-        type:
-          type: string
-          enum:
-          - Polygon
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-              minItems: 2
-              maxItems: 2
-    ExtractFeature:
-      type: object
-      required:
-      - type
-      - properties
-      - geometry
-      properties:
-        type:
-          type: string
-          enum:
-          - Feature
-        properties:
-          $ref: '#/components/schemas/ExtractProperties'
-        geometry:
-          description: 'GeoJSON geometry (MultiPolygon or Polygon) representing the boundary of the extract. May be null for the planet extract.
-
-            '
-          oneOf:
-          - $ref: '#/components/schemas/GeoJsonPolygon'
-          - $ref: '#/components/schemas/GeoJsonMultiPolygon'
-    ExtractIndexNoGeom:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            required:
-            - type
-            - properties
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              properties:
-                $ref: '#/components/schemas/ExtractProperties'
