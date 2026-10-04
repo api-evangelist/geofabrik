@@ -84,16 +84,6 @@ paths:
           description: Updates feed not available for this extract
 components:
   parameters:
-    region:
-      name: region
-      in: path
-      required: true
-      description: 'Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.
-
-        '
-      schema:
-        type: string
-        example: europe
     area:
       name: area
       in: path
@@ -104,3 +94,13 @@ components:
       schema:
         type: string
         example: germany
+    region:
+      name: region
+      in: path
+      required: true
+      description: 'Top-level geographic region, e.g. europe, north-america, asia, australia-oceania, africa, south-america, central-america, russia, antarctica.
+
+        '
+      schema:
+        type: string
+        example: europe
