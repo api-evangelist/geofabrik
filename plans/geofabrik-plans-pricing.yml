@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: Geofabrik Plans and Pricing
 description: Geofabrik offers a free public download tier with no authentication required, and paid managed API plans for Overpass, Geocoding, and Routing services. Paid plans are billed annually in advance, with monthly request quotas. All public OSM data extracts (download.geofabrik.de) are freely available under the ODbL 1.0 license.
 url: https://www.geofabrik.de/data/overpass-api.html
@@ -91,3 +95,40 @@ plans:
       - Option for dedicated custom server
       - Annual billing
       - Custom routing profile modifications available
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Public Download (Free)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Small (Managed APIs)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Medium (Managed APIs)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Large (Managed APIs)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: XXL / Unlimited (Managed APIs)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
