@@ -84,16 +84,6 @@ paths:
           description: Updates feed not available for this extract
 components:
   parameters:
-    area:
-      name: area
-      in: path
-      required: true
-      description: 'Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.
-
-        '
-      schema:
-        type: string
-        example: germany
     region:
       name: region
       in: path
@@ -104,3 +94,13 @@ components:
       schema:
         type: string
         example: europe
+    area:
+      name: area
+      in: path
+      required: true
+      description: 'Area name within the region, e.g. germany, france, us/california. Sub-region paths use forward slashes.
+
+        '
+      schema:
+        type: string
+        example: germany

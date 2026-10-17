@@ -64,6 +64,46 @@ paths:
                 $ref: '#/components/schemas/ExtractIndexNoGeom'
 components:
   schemas:
+    ExtractFeature:
+      type: object
+      required:
+      - type
+      - properties
+      - geometry
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        properties:
+          $ref: '#/components/schemas/ExtractProperties'
+        geometry:
+          description: 'GeoJSON geometry (MultiPolygon or Polygon) representing the boundary of the extract. May be null for the planet extract.
+
+            '
+          oneOf:
+          - $ref: '#/components/schemas/GeoJsonPolygon'
+          - $ref: '#/components/schemas/GeoJsonMultiPolygon'
+    GeoJsonPolygon:
+      type: object
+      required:
+      - type
+      - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+          - Polygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
     ExtractProperties:
       type: object
       required:
@@ -107,21 +147,6 @@ components:
           - AU-ACT
         urls:
           $ref: '#/components/schemas/ExtractUrls'
-    ExtractIndex:
-      type: object
-      required:
-      - type
-      - features
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExtractFeature'
-          description: All available OSM extract regions (~555 areas).
     ExtractUrls:
       type: object
       description: Download URLs available for an extract
@@ -158,68 +183,21 @@ components:
           type: string
           format: uri
           description: Geofabrik taginfo instance link for this extract.
-    GeoJsonMultiPolygon:
+    ExtractIndex:
       type: object
       required:
       - type
-      - coordinates
+      - features
       properties:
         type:
           type: string
           enum:
-          - MultiPolygon
-        coordinates:
+          - FeatureCollection
+        features:
           type: array
           items:
-            type: array
-            items:
-              type: array
-              items:
-                type: array
-                items:
-                  type: number
-                minItems: 2
-                maxItems: 2
-    GeoJsonPolygon:
-      type: object
-      required:
-      - type
-      - coordinates
-      properties:
-        type:
-          type: string
-          enum:
-          - Polygon
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-              minItems: 2
-              maxItems: 2
-    ExtractFeature:
-      type: object
-      required:
-      - type
-      - properties
-      - geometry
-      properties:
-        type:
-          type: string
-          enum:
-          - Feature
-        properties:
-          $ref: '#/components/schemas/ExtractProperties'
-        geometry:
-          description: 'GeoJSON geometry (MultiPolygon or Polygon) representing the boundary of the extract. May be null for the planet extract.
-
-            '
-          oneOf:
-          - $ref: '#/components/schemas/GeoJsonPolygon'
-          - $ref: '#/components/schemas/GeoJsonMultiPolygon'
+            $ref: '#/components/schemas/ExtractFeature'
+          description: All available OSM extract regions (~555 areas).
     ExtractIndexNoGeom:
       type: object
       required:
@@ -244,3 +222,25 @@ components:
                 - Feature
               properties:
                 $ref: '#/components/schemas/ExtractProperties'
+    GeoJsonMultiPolygon:
+      type: object
+      required:
+      - type
+      - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+          - MultiPolygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+                minItems: 2
+                maxItems: 2
