@@ -64,27 +64,151 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Geofabrik is a geographic data processing company based in Karlsruhe, Germany, specializing in OpenStreetMap data extraction, distribution, and managed geospatial API services. Their free download server at download.geofabrik.de provides daily-updated OSM extracts in PBF, shapefile, and GeoPackage formats for every region of the world, making it the primary source for bulk OSM data consumption in GIS applications.
+Geofabrik is a geographic data processing company specializing in OpenStreetMap data extraction, processing, and distribution. Their download REST API provides daily-updated OSM extracts in PBF, shapefile, and GeoPackage formats for every region of the world, alongside paid managed services for geocoding (Nominatim/Photon), routing (OSRM/GraphHopper), and the Overpass API for advanced OSM queries. All public downloads are free under the ODbL 1.0 license.
 
-Beyond free downloads, Geofabrik offers paid managed services for Overpass API queries, geocoding (Nominatim and Photon), and routing (OSRM and GraphHopper) — all powered by OpenStreetMap data. Plans range from small (€40/month) to unlimited (€450+/month), billed annually.
+**Areas:** OpenStreetMap · Geospatial · GIS · Maps · Downloads · OSM · Routing · Geocoding
 
-## Links
+## Geofabrik on APIs.io
 
-- **Website:** https://www.geofabrik.de
-- **Download Service:** https://download.geofabrik.de
-- **Technical Documentation:** https://download.geofabrik.de/technical.html
-- **Data Products:** https://www.geofabrik.de/data/
-- **Blog:** https://blog.geofabrik.de
-- **GitHub:** https://github.com/geofabrik
-- **Mastodon:** https://en.osm.town/@geofabrik
+Everything profiled for Geofabrik is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/geofabrik/](https://apis.io/providers/geofabrik/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (5)
 
-- **Download API** — Free daily-updated OSM extracts (PBF, shapefiles, GeoPackage) with a machine-readable JSON index
-- **Overpass API** — Managed hosted Overpass API for complex OSM queries; 10k–unlimited requests/month
-- **Geocoding API** — Managed Nominatim and Photon geocoding; 100k–unlimited requests/month
-- **Routing API** — Managed OSRM and GraphHopper routing with matrix, isochrone, and map-matching support; 100k–unlimited requests/month
+- [Geofabrik Overpass API](https://apis.io/apis/geofabrik/overpass-api/) — Managed Overpass API service providing a reliable, low-latency alternative to the public OpenStreetMap Overpass servers for running complex OSM data…
+- [Geofabrik Geocoding API](https://apis.io/apis/geofabrik/geocoding-api/) — Managed geocoding service powered by Nominatim and Photon, converting addresses to coordinates and vice versa using OpenStreetMap data. Photon supports…
+- [Geofabrik Routing API](https://apis.io/apis/geofabrik/routing-api/) — Managed routing service powered by OSRM and GraphHopper for route calculation, turn-by-turn instructions, distance matrix computation, isochrones, and map…
+- [Geofabrik Downloads API](https://apis.io/apis/geofabrik/geofabrik-downloads-api/) — Direct download of OSM data extract files
+- [Geofabrik Index API](https://apis.io/apis/geofabrik/geofabrik-index-api/) — Machine-readable index of all available extracts
 
-## APIs.json
+### Published properties
 
-This repository contains an [APIs.json](apis.yml) index file cataloging Geofabrik's public APIs and services.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Geofabrik Agentic Access](https://apis.io/agentic-access/geofabrik/geofabrik-agentic-access/)
+
+#### JSON Schema (1)
+
+The data models the API reads and writes.
+
+- [Geofabrik Extract Index](https://apis.io/schemas/geofabrik/geofabrik-extract-index/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Geofabrik Context](https://apis.io/jsonld/geofabrik/geofabrik-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Geofabrik Vocabulary](https://apis.io/vocabularies/geofabrik/geofabrik-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Geofabrik Extract Index Example](https://apis.io/examples/geofabrik/geofabrik-extract-index-example/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Geofabrik Download Downloads API](https://apis.io/collections/geofabrik/open-geofabrik-downloads-api/)
+- [Geofabrik Download Downloads Index API](https://apis.io/collections/geofabrik/open-geofabrik-index-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Geofabrik — jsonschema rules](https://apis.io/rules/geofabrik/geofabrik-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Geofabrik Domain Security](https://apis.io/security/geofabrik/geofabrik-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Geofabrik Plans Pricing](https://apis.io/plans/geofabrik/geofabrik-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Geofabrik Rate Limits](https://apis.io/rate-limits/geofabrik/geofabrik-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Geofabrik Finops](https://apis.io/finops/geofabrik/geofabrik-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.geofabrik.de)
+- [Documentation](https://download.geofabrik.de/technical.html)
+- [Pricing](https://www.geofabrik.de/data/overpass-api.html)
+- [Blog](https://blog.geofabrik.de)
+
+## API Evangelist rating
+
+**Kin Score 27.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/geofabrik/](https://apis.io/providers/geofabrik/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Geofabrik: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/geofabrik/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
